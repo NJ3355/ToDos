@@ -1,2 +1,6 @@
 # ToDos
-Todo List application using JavaScript
+Todo List application.
+
+Tools: HTML, CSS, JavaScript
+
+Link: TBA
