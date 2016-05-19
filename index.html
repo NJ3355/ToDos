@@ -17,7 +17,12 @@
 
 		<div>
 			<button onclick="handlers.addTodo()">Add</button>
-			<input id="addTodoTextInput" type="text">
+			<input id="addTodoTextInput" type="text" placeholder="What needs to be done?">
+		</div>
+		<div>
+			<ul id="todoList" onMouseOver="handlers.addDeleteClass(event)" onMouseOut="handlers.removeDeleteClass(event)">
+
+			</ul>
 		</div>
 
 		<div>

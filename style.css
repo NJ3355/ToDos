@@ -1,0 +1,19 @@
+#todoList {
+	width:400px;
+		
+	margin: 0;
+    padding: 0;
+}
+
+.item {
+
+        border-bottom: 1px solid #ededed;
+}
+
+.destroy {
+
+}
+
+.hidden {
+	display:none;
+}

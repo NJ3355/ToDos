@@ -2,7 +2,12 @@
 
 var todoList = {
 	todos: [],
+	todoUL: document.getElementById("todoList"),
+	todoLI: document.getElementsByTagName("li"),
+
 	displayTodos: function() {
+		
+
 		if(this.todos.length === 0){
 			console.log("Your todo list is empy!");
 		} else {
@@ -16,6 +21,16 @@ var todoList = {
 			}
 		}
 	  }
+
+	  		
+	
+
+		  this.todoUL.innerHTML+="<li name=" + (this.todos.length - 1) + " class='item'><input type='checkbox' name=" + (this.todos.length - 1) + ">" + this.todos[this.todos.length - 1].todoText + 
+		  "</input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+		 // this.addHoverListener();
+		
+
+		
 	},
 
 	addTodo: function(todoText) {
@@ -24,7 +39,16 @@ var todoList = {
 			completed: false
 		});
 
+		
 		this.displayTodos();
+	},
+
+	addHoverListener: function(){
+		this.todoLI[this.todoLI.length-1].addEventListener("mouseover",  function() {
+   			 handlers.addDeleteClass(event);
+		});
+
+		this.todoLI[this.todoLI.length-1].addEventListener("mouseout", handlers.removeDeleteClass);
 	},
 
 	changeTodo: function(position, todoText) {
@@ -72,7 +96,10 @@ var todoList = {
 
 var handlers = {
 	displayTodos: function() {
+		
 		todoList.toggleAll();
+
+		
 
 	},
 
@@ -91,10 +118,23 @@ var handlers = {
 		changeTodoTextInput.value = '';
 	},
 
-	deleteTodo: function(){
-		var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
+	deleteTodo: function(index){
+		/*var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
 		todoList.deleteTodos(deleteTodoPositionInput.valueAsNumber);
-		deleteTodoPositionInput.value = '';
+		var todoLI = document.getElementById('todoList')
+
+		todoLI.removeChild(todoLI.childNodes[deleteTodoPositionInput.valueAsNumber]);
+		console.log(todoLI.childNodes[deleteTodoPositionInput.valueAsNumber]);
+	
+		deleteTodoPositionInput.value = '';*/
+
+		var x = index.target;
+		var y = x.getAttribute('name');
+		console.log(x.parentElement);	
+		var z = x.parentElement;
+		todoList.deleteTodos(y);
+		
+		todoList.todoUL.removeChild(z);
 	},
 
 	toggleCompleted: function(){
@@ -105,8 +145,39 @@ var handlers = {
 
 	toggleAll: function() {
 		todoList.toggleAll();
+	},
+
+	addDeleteClass: function(index) {
+
+		var x = index.target;
+		var y = x.getAttribute('name');
+		
+		//document.getElementsByClassName("destroy").style.display = "block";
+		//console.log(todoList.todoLI[y].childNodes.length);
+
+
+		
+	    todoList.todoLI[y].childNodes[2].className = "";
+		
+	
+	},
+
+	removeDeleteClass: function(index) {
+		var x = index.target;
+		var y = x.getAttribute('name');		
+		//document.getElementsByClassName("destroy").style.display = "none";
+	    todoList.todoLI[y].childNodes[2].className = "hidden";
+	
 	}
 
 
 
+
 };
+	
+
+
+
+/*todoList.todoUL.addEventListener("mouserover", function() {
+    handlers.addDeleteClass();
+});*/
