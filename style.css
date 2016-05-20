@@ -17,3 +17,7 @@
 .hidden {
 	display:none;
 }
+
+.checkbox:checked + p {
+  text-decoration: line-through;
+}
