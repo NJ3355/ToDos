@@ -24,25 +24,34 @@ var todoList = {
 
 	  		
 	
-	/*  if(this.todos.length > 0){
-		  this.todoUL.innerHTML+="<li name=" + (this.todos.length - 1) + " class='item'><input type='checkbox' class='checkbox' name=" + (this.todos.length - 1) + ">" + this.todos[this.todos.length - 1].todoText + 
+	 if(this.todos.length > 0){
+
+		 this.todoUL.innerHTML+="<li name=" + (this.todos.length - 1) + " class='item'><input type='checkbox' class='checkbox' name=" + (this.todos.length - 1) + ">" + this.todos[this.todos.length - 1].todoText + 
 		  "</input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
-		 // this.addHoverListener();
+		 // this.addHoverListener();*/
+
+		 //this.todoUL.innerHTML+=this.todos[this.todos.length-1].li;
 		}
-*/		this.resetList();
+		
 		
 	},
 
 	resetList: function(){
 
-		
-    
-
-		if(this.todos.length > 0){
-		  this.todoUL.innerHTML+="<li name=" + (this.todos.length - 1) + " class='item'><input type='checkbox' class='checkbox' name=" + (this.todos.length - 1) + ">" + this.todos[this.todos.length - 1].todoText + 
-		  "</input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+		//debugger;
+   while( this.todoUL.firstChild ){
+  this.todoUL.removeChild( this.todoUL.firstChild );
+}
+console.log(this.todos);
+		//if(this.todos.length >= 0){
+			//debugger;
+			for(var i = 0; i < this.todos.length; i++){
+		  this.todoUL.innerHTML+="<li name=" + i + " class='item'><input type='checkbox' class='checkbox' name=" + i + ">" + this.todos[i].todoText + 
+		  "</input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+		  console.log(this.todos[i].todoText);
 		 // this.addHoverListener();
-		}
+			}
+		//}
 
 	},
 
@@ -50,6 +59,8 @@ var todoList = {
 		this.todos.push({
 			todoText: todoText,
 			completed: false
+			//li: "<li name=" + (this.todos.length - 1) + " class='item'><input type='checkbox' class='checkbox' name=" + (this.todos.length - 1) + ">" + todoText + 
+		  //"</input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>"
 		});
 
 		
@@ -72,7 +83,7 @@ var todoList = {
 	deleteTodos: function(position) {
 		this.todos.splice(position,1);
 		//this.displayTodos();
-		//this.resetList();
+		this.resetList();
 	},
 
 	toggleCompleted: function(position) {
@@ -144,14 +155,16 @@ var handlers = {
 
 		var x = index.target;
 		var y = x.getAttribute('name');
-		console.log(x.parentElement);	
+		//console.log(x.parentElement);	
 		var z = x.parentElement;
 	
 		
 		//todoList.todoUL.removeChild(z);
 		z.parentNode.removeChild(z);
-		todoList.deleteTodos(y);
 
+		todoList.deleteTodos(y);
+		 // todoList.resetList();
+		console.log(todoList.todoUL);
 	},
 
 	toggleCompleted: function(){
@@ -166,16 +179,20 @@ var handlers = {
 
 	addDeleteClass: function(index) {
 		
-		console.log(todoList.todos.length);
+		//console.log(todoList.todos.length);
 		var x = index.target;
 		var y = x.getAttribute('name');
+		console.log(y);
 		
 		//document.getElementsByClassName("destroy").style.display = "block";
 		//console.log(todoList.todoLI[y].childNodes.length);
 
 
-		console.log(todoList.todoLI);
+		//console.log(todoList.todoLI);
+
 	    todoList.todoLI[y].childNodes[2].className = "";
+	  
+	  
 		
 	
 	},
@@ -184,7 +201,9 @@ var handlers = {
 		var x = index.target;
 		var y = x.getAttribute('name');		
 		//document.getElementsByClassName("destroy").style.display = "none";
+
 	    todoList.todoLI[y].childNodes[2].className = "hidden";
+
 	
 	}
 
