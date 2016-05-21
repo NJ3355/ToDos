@@ -26,8 +26,8 @@ var todoList = {
 	
 	 if(this.todos.length > 0){
 
-		 this.todoUL.innerHTML+="<li name=" + (this.todos.length - 1) + " class='item'><input type='checkbox' class='checkbox' name=" + (this.todos.length - 1) + ">" + this.todos[this.todos.length - 1].todoText + 
-		  "</input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+		 this.todoUL.innerHTML+="<li name=" + (this.todos.length - 1) + " class='item'><input type='checkbox' onclick='handlers.toggleCompleted(event)' class='checkbox' name=" + (this.todos.length - 1) +
+		  ">" + "<span name=" + (this.todos.length - 1) + ">" + this.todos[this.todos.length - 1].todoText + "</span></input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
 		 // this.addHoverListener();*/
 
 		 //this.todoUL.innerHTML+=this.todos[this.todos.length-1].li;
@@ -38,16 +38,16 @@ var todoList = {
 
 	resetList: function(){
 
-		//debugger;
+		
    while( this.todoUL.firstChild ){
   this.todoUL.removeChild( this.todoUL.firstChild );
 }
 console.log(this.todos);
 		//if(this.todos.length >= 0){
-			//debugger;
+			
 			for(var i = 0; i < this.todos.length; i++){
-		  this.todoUL.innerHTML+="<li name=" + i + " class='item'><input type='checkbox' class='checkbox' name=" + i + ">" + this.todos[i].todoText + 
-		  "</input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+		  this.todoUL.innerHTML+="<li name=" + i + " class='item'><input type='checkbox' class='checkbox' name=" + i + ">" + "<span name=" + (this.todos.length - 1) + ">" + this.todos[i].todoText + 
+		  "</span></input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
 		  console.log(this.todos[i].todoText);
 		 // this.addHoverListener();
 			}
@@ -87,9 +87,12 @@ console.log(this.todos);
 	},
 
 	toggleCompleted: function(position) {
+
+		
+		
 		var todo = this.todos[position];
 		todo.completed = !todo.completed;
-		this.displayTodos();
+		//this.displayTodos();
 	},
 
 	toggleAll: function(){
@@ -167,10 +170,14 @@ var handlers = {
 		console.log(todoList.todoUL);
 	},
 
-	toggleCompleted: function(){
-		var toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
-		todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
-		toggleCompletedPositionInput.value = '';
+	toggleCompleted: function(position){
+		var x = position.target;
+		var y = x.getAttribute('name');
+
+		//var toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
+		var toggleCompletedPositionInput = y;
+		todoList.toggleCompleted(toggleCompletedPositionInput);
+		//toggleCompletedPositionInput.value = '';
 	},
 
 	toggleAll: function() {
@@ -190,7 +197,7 @@ var handlers = {
 
 		//console.log(todoList.todoLI);
 
-	    todoList.todoLI[y].childNodes[2].className = "";
+	    todoList.todoLI[y].childNodes[2].className = "float";
 	  
 	  
 		
