@@ -31,24 +31,36 @@ var todoList = {
 		 // this.addHoverListener();*/
 
 		 //this.todoUL.innerHTML+=this.todos[this.todos.length-1].li;
+		// this.resetList();
 		}
+		
 		
 		
 	},
 
 	resetList: function(){
+//console.log("hey");
+	
+  	 while( this.todoUL.firstChild ){
+ 		 this.todoUL.removeChild( this.todoUL.firstChild );
+		}
 
-		
-   while( this.todoUL.firstChild ){
-  this.todoUL.removeChild( this.todoUL.firstChild );
-}
-console.log(this.todos);
+
 		//if(this.todos.length >= 0){
 			
 			for(var i = 0; i < this.todos.length; i++){
-		  this.todoUL.innerHTML+="<li name=" + i + " class='item'><input type='checkbox' class='checkbox' name=" + i + ">" + "<span name=" + (this.todos.length - 1) + ">" + this.todos[i].todoText + 
-		  "</span></input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
-		  console.log(this.todos[i].todoText);
+
+				if(this.todos[i].completed === true){
+
+					 this.todoUL.innerHTML+="<li name=" + i + " class='item'><input type='checkbox' onclick='handlers.toggleCompleted(event)' checked='' class='checkbox' name=" + i + ">" + "<span contenteditable='true' name=" + (this.todos.length - 1) + ">" + this.todos[i].todoText + 
+		  			"</span></input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+				} else {
+					 this.todoUL.innerHTML+="<li name=" + i + " class='item'><input type='checkbox' onclick='handlers.toggleCompleted(event)' class='checkbox' name=" + i + ">" + "<span contenteditable='true' name=" + (this.todos.length - 1) + ">" + this.todos[i].todoText + 
+		  			"</span></input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+				}
+
+
+		 
 		 // this.addHoverListener();
 			}
 		//}
@@ -58,13 +70,16 @@ console.log(this.todos);
 	addTodo: function(todoText) {
 		this.todos.push({
 			todoText: todoText,
-			completed: false
+			completed: false,
+			editable:false
 			//li: "<li name=" + (this.todos.length - 1) + " class='item'><input type='checkbox' class='checkbox' name=" + (this.todos.length - 1) + ">" + todoText + 
 		  //"</input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>"
 		});
 
 		
-		this.displayTodos();
+		//this.displayTodos();
+		this.resetList();
+		
 	},
 
 	addHoverListener: function(){
@@ -75,9 +90,18 @@ console.log(this.todos);
 		this.todoLI[this.todoLI.length-1].addEventListener("mouseout", handlers.removeDeleteClass);
 	},
 
-	changeTodo: function(position, todoText) {
-		this.todos[position].todoText = todoText;
-		this.displayTodos();
+	updateTodo: function(index) {
+	
+		//this.todos[position].todoText = todoText;
+		//this.displayTodos();
+		console.log(index);
+		var x = index.target;
+		var y = x.getAttribute('name');
+
+
+		var todo = this.todos[y];
+		todo.editable = !todo.editable;
+		console.log(this.todos[y].editable);
 	},
 
 	deleteTodos: function(position) {
@@ -93,6 +117,8 @@ console.log(this.todos);
 		var todo = this.todos[position];
 		todo.completed = !todo.completed;
 		//this.displayTodos();
+
+		
 	},
 
 	toggleAll: function(){
@@ -137,13 +163,19 @@ var handlers = {
 		addTodoTextInput.value = '';
 	},
 
-	changeTodo: function(){
-		
-		var changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
-		var changeTodoTextInput = document.getElementById('changeTodoTextInput');
-		todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
-		changeTodoPositionInput.value = '';
-		changeTodoTextInput.value = '';
+	changeTodooo: function(index){
+		console.log("hey");
+		var x = index.target;
+		var y = x.getAttribute('name');
+
+
+		var todo = todoList.todos[y];
+		todo.completed = !todo.completed;
+		//var changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+		//var changeTodoTextInput = document.getElementById('changeTodoTextInput');
+		//todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+		//changeTodoPositionInput.value = '';
+		//changeTodoTextInput.value = '';
 	},
 
 	deleteTodo: function(index){
@@ -171,6 +203,7 @@ var handlers = {
 	},
 
 	toggleCompleted: function(position){
+		
 		var x = position.target;
 		var y = x.getAttribute('name');
 
@@ -182,6 +215,7 @@ var handlers = {
 
 	toggleAll: function() {
 		todoList.toggleAll();
+		todoList.resetList();
 	},
 
 	addDeleteClass: function(index) {
