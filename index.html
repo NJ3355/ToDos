@@ -2,20 +2,24 @@
 <html>
 
 	<head>
+		<script src="https://use.fontawesome.com/e07070a13d.js"></script>
 		<link rel="stylesheet" href="style.css">
 		
 	</head>
 
 	<body>
-		<h1>Todos</h1>
+		
 
 	
-		<div>
+		<!--<div>
 			<button onclick="handlers.toggleAll()">Toggle All</button>
-		</div>
-
+		</div>-->
+<div id="container">
+	<h1>Todos</h1>
 		<div>
-			<button onclick="handlers.addTodo()">Add</button>
+			<!--<button onclick="handlers.addTodo()">Add</button>-->
+			<i onclick="handlers.toggleAll()" class="fa fa-chevron-down" aria-hidden="true"></i>
+			
 			<input id="addTodoTextInput" type="text" placeholder="What needs to be done?">
 		</div>
 		<div>
@@ -24,14 +28,16 @@
 			</ul>
 		</div>
 
-		<div>
+		<!--<div>
 			<button onclick="handlers.changeTodo()">Change Todo</button>
 			<input id="changeTodoPositionInput" type="number">
 			<input id="changeTodoTextInput" type="text">
+		</div>-->
+		<div>
+			<button onclick="todoList.updateTodo()">Save Edits</button>
 		</div>
 
-
-
+</div>
 	
 
 	<script src="script.js"></script>
