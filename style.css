@@ -16,11 +16,13 @@ h1 {
 	
 	margin: 0;
     padding: 0;
+    
 }
 
 #todoList li {
 	list-style: none;
-	height:3em;
+ margin:0;
+ padding: 0;
 	width:375px;
 }
 
@@ -49,9 +51,20 @@ h1 {
 }
 
 #addTodoTextInput {
-	width:375px;
+	width:83%;
 	height:3em;
+	padding-left: 3em;
 
+}
+
+#update {
+
+}
+
+i {
+	position: absolute;
+	padding-left: 1em;
+	padding-top: 1em;
 }
 
 
