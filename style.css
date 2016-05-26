@@ -1,9 +1,10 @@
 
 body{
 	font-family: 'Josefin Sans', sans-serif;
+	background-color: teal;
 }
 #container { 
-	
+	padding-top: 3em;
 	width:400px;
 	margin: auto;
 }
@@ -67,6 +68,14 @@ h1 {
 
 #update {
 
+}
+
+#directions {
+	padding-top: 2em;
+}
+
+h4, p {
+	text-align: center;
 }
 
 
