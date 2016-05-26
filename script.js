@@ -27,7 +27,7 @@ var todoList = {
 	 if(this.todos.length > 0){
 
 		 this.todoUL.innerHTML+="<li name=" + (this.todos.length - 1) + " class='item'><input id='roundedTwo' type='checkbox' onclick='handlers.toggleCompleted(event)' class='checkbox' name=" + (this.todos.length - 1) +
-		  ">" + "<span name=" + (this.todos.length - 1) + ">" + this.todos[this.todos.length - 1].todoText + "</span></input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+		  ">" + "<span name=" + (this.todos.length - 1) + ">" + this.todos[this.todos.length - 1].todoText + "</span></input><button name=" + (this.todos.length - 1) + " onclick='handlers.deleteTodo(event)' class='hidden'>X</button></li>";
 		 // this.addHoverListener();*/
 
 		 //this.todoUL.innerHTML+=this.todos[this.todos.length-1].li;
@@ -53,10 +53,10 @@ var todoList = {
 				if(this.todos[i].completed === true){
 
 					 this.todoUL.innerHTML+="<li name=" + i + " class='item'><input type='checkbox' onclick='handlers.toggleCompleted(event)' checked='' class='checkbox' name=" + i + ">" + "<span contenteditable='true' name=" + (this.todos.length - 1) + ">" + this.todos[i].todoText + 
-		  			"</span></input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+		  			"</span></input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>X</button></li>";
 				} else {
 					 this.todoUL.innerHTML+="<li name=" + i + " class='item'><input type='checkbox' onclick='handlers.toggleCompleted(event)' class='checkbox' name=" + i + ">" + "<span contenteditable='true' name=" + (this.todos.length - 1) + ">" + this.todos[i].todoText + 
-		  			"</span></input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>(X)</button></li>";
+		  			"</span></input><button name=" + i + " onclick='handlers.deleteTodo(event)' class='hidden'>X</button></li>";
 				}
 
 

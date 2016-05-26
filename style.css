@@ -1,6 +1,6 @@
 
 body{
-	
+	font-family: 'Josefin Sans', sans-serif;
 }
 #container { 
 	
@@ -24,6 +24,7 @@ h1 {
  margin:0;
  padding: 0;
 	width:375px;
+	height:3em;
 }
 
 
@@ -47,6 +48,12 @@ h1 {
 
 .float {
 	float:right;
+	height: 100%;
+	border:none;
+    background:none;
+    font-family: 'Josefin Sans', sans-serif;
+    color:red;
+    font-size: 1.5em;
 
 }
 
@@ -54,6 +61,7 @@ h1 {
 	width:83%;
 	height:3em;
 	padding-left: 3em;
+	font-size: 1em;
 
 }
 
@@ -61,10 +69,18 @@ h1 {
 
 }
 
+
+
 i {
 	position: absolute;
 	padding-left: 1em;
 	padding-top: 1em;
+}
+
+span {
+	font-size: 1.5em;
+	line-height: 53px
+
 }
 
 
