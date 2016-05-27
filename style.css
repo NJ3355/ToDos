@@ -67,7 +67,11 @@ h1 {
 }
 
 #update {
-
+	background-color: #555555;
+	border: none;
+	padding:1em;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1em;
 }
 
 #directions {
