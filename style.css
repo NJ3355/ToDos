@@ -233,3 +233,21 @@ input[type=checkbox].css-checkbox.lrg:checked + label.css-label.lrg{
 
 
 
+/*MEDIA QUERIES*/
+
+@media screen and (max-width: 375px) {
+    #inputContainer { 
+    	text-align: center;
+    	margin:auto;
+    	width:85%;
+    }
+
+    #container {
+    	width:350px;
+    }
+
+    #directions {
+	    width: 80%;
+	    margin: auto;
+    }
+}
