@@ -250,4 +250,9 @@ input[type=checkbox].css-checkbox.lrg:checked + label.css-label.lrg{
 	    width: 80%;
 	    margin: auto;
     }
+
+    #updateDiv { 
+    	width:85%;
+    	margin: auto;
+    }
 }
